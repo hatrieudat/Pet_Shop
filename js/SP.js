@@ -912,9 +912,7 @@ function getInform(){
                                 </div>\
                                 <div class="clear"></div>';
         }
-	}
-	for (var i = 0; i < sp.length; i++) {
-        if(spsale[i].masp == ma){
+		if(spsale[i].masp == ma){
             sanpham.innerHTML = '<div class="hinhanh">\
                                     <img src="' +spsale[i].hinh+ '">\
                                 </div>\
@@ -932,9 +930,8 @@ function getInform(){
                                 </div>\
                                 <div class="clear"></div>';
         }
-    }
+	}
 }
-
 /*window.addEventListener('load',Click_them_vao_gio);
 
 function Click_them_vao_gio() {
