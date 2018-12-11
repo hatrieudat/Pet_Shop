@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+.dangnhap{
+    position: fixed;
+    background-color: white;
+    width: 30%;
+    height: 100%;
+    box-shadow: 2px 2px 2px grey;
+}
+
+h1{
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: blue;
+}
+
+form{
+    text-align: center;
+}
+
+form .input{
+    position: relative;
+}
+
+form .input i{
+    color: grey;
+    position: absolute;
+    left: 13.5%;
+    top: 30%;
+}
+
+form input[type=text], form input[type=password]{
+    width: 75%;
+    margin: 2px;
+    padding: 10px 20px;
+}
+
+form button{
+    background-color: #A70045;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+}
+
+.forget{
+    display: inline;
+    margin: 10px 20px;
+    cursor: help;
+}
+
+#forget_pass{
+    display: none;
+    margin: 10px 20px;
+}
+
+/*For small screen*/
+@media only screen and (max-width: 600px) {
+    .dangnhap{
+        width: 100%;
+    }
+}

@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+.chitietsp{
+    max-width: 1200px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto;
+}
+
+.chitietsp .hinhanh{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.chitietsp .hinhanh img {
+    vertical-align: middle;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.chitietsp .overview{
+    float: left;
+    width: 49%;
+    margin-left: 1%;
+}
+
+.overview .soluong{
+    padding-bottom: 50px;
+}
+
+.overview .gia{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.overview .giacu{
+    margin-left: 20px;
+    font-size: 20px;
+    color: red;
+    text-decoration: line-through;
+}
+
+.overview .shop-item-button{
+    padding: 20px 100px;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.chitietsp .thongtin{
+    float: left;
+    padding-top: 50px;
+}
+
+/*For small screen*/
+@media only screen and (max-width: 600px) {
+    .chitietsp{
+        padding: 0;
+    }
+    
+    .overview{
+        padding-left: 5px;
+    }
+    
+    .overview .gia{
+        font-size: 150%;
+    }
+    
+    .overview .giacu{
+        margin-left: 5%;
+        font-size: 80%;
+    }
+    
+    .overview .shop-item-button{
+        padding: 5% 15%;
+    }
+}

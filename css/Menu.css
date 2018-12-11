@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+.Menu-list{
+	position:sticky;
+	top:0;
+	z-index:1;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.Menu-list .container{
+    max-width: 1200px;
+    margin: auto;
+	background-color:#a5f1ab;
+	border:1px solid green;
+}
+
+.Menu{
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    display: block;
+    padding: 20px 30px;
+	font-weight:bold;
+}
+
+.Menu a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.Menu a:hover{
+    color: deeppink;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    max-width: 450px;
+    left: 0px;
+    right: 0px;
+    top: 48px;
+    z-index: 1;
+    box-shadow: 5px 5px 2px grey;
+}
+
+.dropdown-content a {
+    position: relative;
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    text-transform: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.Menu:hover .dropdown-content {
+    display: inline-block;
+}
+
+.dropdown-content .Menu-sub .dropdown-sub{
+    display: none;
+    font-weight: normal;
+}
+
+.dropdown-content .Menu-sub:hover .dropdown-sub{
+    display: block;
+}
+
+/*For small screen*/
+@media only screen and (max-width: 1200px) {
+    .Menu{
+        padding: 15px 15px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Menu{
+        padding: 10px; 10px;
+    }
+    
+    .dropdown-content {
+        top:32px;
+    }
+}
