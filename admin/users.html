@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="css/Menu.css" rel="stylesheet" type="text/css" />
     <link href="css/users.css" rel="stylesheet" type="text/css" />
-<title>Admin area</title>
+	<script src="js/users.js"></script>
+	<title>Admin area</title>
 <style>
-    * {
+ * {
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;	
@@ -38,42 +39,89 @@ html, body {
 }
 </style>
 <script>
-    function openMenu() {
-      document.getElementById("MENU").style.width = "100%";
-    }
-
-    function closeMenu() {
-      document.getElementById("MENU").style.width = "0%";
-    }
     function signout() {
         window.location = 'index.html';
     }
 </script>
 </head>
 
-<body>
+<body onLoad="load_quan_ly_user(); xoauser()">
 <div id="MENU" class="menu">
     <img src="images/logo.png">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
     <div class="menu-content">
+		<a href="thongke.html"><i class="fa fa-chart-bar" style="padding-left: 3px"> Thống kê</i></a>
         <a href="sanpham.html"><i class="fas fa-box-open"></i> Quản lý sản phẩm</a>
         <a href="users.html" class="current"><i class="fa fa-users"></i> Quản lý user</a>
         <a href="donhang.html"><i class="fas fa-shipping-fast"></i> Quản lý đơn hàng</a>
         <a href="#" onClick="signout()"><i class="fas fa-power-off"></i> Đăng xuất</a>
     </div>
 </div>
-<div class="nav"><span class="open" onclick="openMenu()"><i class="fas fa-list"></i></span></div>
-<table>
-    <tr>
-        <th>Tên đăng nhập</th>
-        <th>Họ tên</th>
-        <th>Giới tính</th>
-        <th>Ngày sinh</th>
-        <th>CMND</th>
-        <th>Điện thoại</th>
-        <th>Địa chỉ</th>
-    </tr>
-    <tr></tr>
-</table>
+<div class="main">
+	<div class="them-sp" onclick="popup_themsp()"><button>Thêm User</button></div>
+	<table id="table-user" cellpadding="10px" cellspacing="0">
+	<thead>
+		<tr style="background-color: #f5f5f5;text-align: center;font-size: 20px;font-weight: bold"> 
+			<th>STT</th>
+      	  	<th>Tên đăng nhập</th>
+      	  	<th>Họ tên</th>
+      	  	<th>Giới tính</th>
+       	 	<th>Ngày sinh</th>
+        	<th>Điện thoại</th>
+        	<th>Thao tác</th>
+    	</tr>
+	</thead>
+	<tbody>
+		<tr></tr>
+	</tbody>
+	</table>
+</div>	
+	
+<div style="clear: both"></div>
+	
+<div class="popup-themsp">
+    <div class="popup-themsp__content">
+    		<div class="popup-themsp__title">Thêm Danh Mục</div>
+            <div class="popup-themsp-left">
+				<div class="popup-themsp-left__label">Tên đăng nhập</div>
+                <div class="popup-themsp-left__label">Họ và tên</div>
+                <div class="popup-themsp-left__label">Giới Tính</div>
+                <div class="popup-themsp-left__label">Ngày Sinh</div>
+                <div class="popup-themsp-left__label">SĐT</div>
+            </div>
+            <div class="popup-themsp-right">
+                <div class="popup-themsp-left__input"><input class="them-user" type="text"></div>
+                <div class="popup-themsp-left__input"><input class="them-user" type="text"></div>
+                <div class="popup-themsp-left__input"><input class="them-user" type="text"></div>
+                <div class="popup-themsp-left__input"><input class="them-user" type="text"></div>
+				<div class="popup-themsp-left__input"><input class="them-user" type="text"></div>
+            </div>
+            <button class="popup-themsp__btn" onclick="them_mot_user()">Thêm</button>
+            <span class="back" onclick="close_popup_themsp()">&times;</span>
+        </div>
+    </div>
+
+    <div class="popup-themsp">
+        <div class="popup-themsp__content">
+            <div class="popup-themsp__title">Sửa User</div>
+            <div class="popup-themsp-left">
+				<div class="popup-themsp-left__label">STT</div>
+                <div class="popup-themsp-left__label">Tên đăng nhập</div>
+                <div class="popup-themsp-left__label">Họ và tên</div>
+                <div class="popup-themsp-left__label">Giới Tính</div>
+                <div class="popup-themsp-left__label">Ngày Sinh</div>
+                <div class="popup-themsp-left__label">SĐT</div>
+            </div>
+            <div class="popup-themsp-right">
+                <div class="popup-themsp-left__input"><input class="sua-user" type="text" readonly=""></div>
+                <div class="popup-themsp-left__input"><input class="sua-user" type="text"></div>
+                <div class="popup-themsp-left__input"><input class="sua-user" type="text"></div>
+                <div class="popup-themsp-left__input"><input class="sua-user" type="text"></div>
+                <div class="popup-themsp-left__input"><input class="sua-user" type="text"></div>
+				<div class="popup-themsp-left__input"><input class="sua-user" type="text"></div>
+            </div>
+            <button class="popup-themsp__btn" onclick="sua_thong_tin_user()">Sửa</button>
+            <span class="back" onclick="close_popup_themsp()">&times;</span>
+        </div>
+    </div>
 </body>
 </html>
