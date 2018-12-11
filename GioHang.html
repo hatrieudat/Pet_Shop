@@ -1,0 +1,513 @@
+<html>
+<head>
+	<link rel="icon" href="images/logo/petshop.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="css/DangNhap_Ki.css" rel="stylesheet" type="text/css" />
+    <link href="css/Header.css" rel="stylesheet" type="text/css" />
+    <link href="css/Menu.css" rel="stylesheet" type="text/css" />
+    <link href="css/Main.css" rel="stylesheet" type="text/css" />
+    <link href="css/Footer.css" rel="stylesheet" type="text/css" />
+    <link href="css/SlideShow.css" rel="stylesheet" type="text/css">
+	<title>Shopping Cart</title>
+</head>
+<style type="text/css">
+* {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;	
+}
+
+::-webkit-scrollbar {
+    width:5px;	
+}
+
+::-webkit-scrollbar-thumb {
+    background:lightpink;
+    border-radius:20px;	
+}
+    
+html {
+ 	scroll-behavior: smooth;
+}
+
+body {
+	margin:0;
+    padding: 0;
+}
+     
+html, body { 
+    cursor:url('http://www.snazzyspace.com/cursorsfolder/dog-paw.png'), auto; 
+}
+
+body {
+	margin:0px;
+}
+
+.content-section {
+	overflow:auto;
+	padding: 16px 60px;
+	background-image: url(images/depositphotos_94498758-stock-illustration-pet-shop-background.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+	background-size:cover;
+	height: 100%;
+}
+
+.section-header {
+	width: 100%;
+	padding: 20px;
+}
+
+.section-header-title {
+	font-size: 40px;
+	font-weight: bolder;
+	padding:20px 50px;
+	color:yellow;
+}
+
+.continue-button {
+	position: absolute;
+	padding:13px;
+	border-radius: 15px;
+	border:none;
+	cursor:pointer;
+	right:100px;
+	font-size: 20px;
+	font-weight: bold;
+	outline: none;
+	background-color: lightyellow;
+	color:green;
+}
+
+.btn {
+	text-align: center;
+	vertical-align: middle;
+	padding: 25px 25px;
+	cursor: pointer;
+}
+
+.btn-primary {
+	color: white;
+	background: #56CCF2;
+	border: none;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.btn-primary:hover {
+	opacity: 0.8;
+}
+
+.btn-danger {
+	color: white;
+	background-color: #EB5757;
+	border: none;
+	border-radius: 4.8px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.btn-danger:hover {
+	background-color: #CC4C4C;
+}
+
+.btn-purchase {
+	display: block;
+	margin: 30px 20px 80px auto;
+	font-size: 28px;
+	outline: none;
+}
+
+.cart-header {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.cart-column {
+	display:flex;
+	align-items: center;
+	border-bottom: 1px solid black;
+	margin-right: 24px;
+	padding-bottom: 10px;
+	margin-top:10px;
+	color:deeppink;
+	font-size: 30px;
+}
+
+.cart-row {
+	display:flex;
+}
+
+.cart-item {
+	width:45%;
+}
+
+.cart-price {
+	width:20%;
+	color:red;
+}
+
+.cart-quantity {
+	width: 35%;
+}
+
+.cart-item-title {
+	color:blue;
+	margin-left:8px;
+	font-size:24px;
+}
+
+.cart-item-image {
+	width: 75px;
+	height: auto;
+	border-radius:10px;
+}
+
+.cart-quantity-input {
+	height: 34px;
+	width: 50px;
+	border-radius: 5px;
+	border: 1px solid #56CCF2;
+	background-color: #eee;
+	color: #333;
+	padding:0;
+	text-align:center;
+	font-size:19.2px;
+	margin-right:25px;
+}
+
+.cart-row:last-child .cart-column:last-child {
+	border-bottom: 1px solid black;
+}
+
+.cart-row:last-child {
+	border: none;
+}
+
+.cart-total {
+	text-align: right;
+	margin-top: 10px;
+	margin-right: 25px;
+	color: darkblue;
+}
+
+.cart-total-title {
+	font-weight: bold;
+	font-size: 28px;
+	margin-right: 20px;
+}
+
+.cart-total-price {
+	font-size: 22px;
+}
+
+.clear {
+	clear:both;
+}
+
+</style>
+
+<script type="text/javascript">
+	if(document.readyState =='loading') 
+		document.addEventListener('DOMContentLoaded',ready)
+	else
+		ready();
+
+	function ready() {
+		var removeCartItemButtons = document.getElementsByClassName('btn-danger')
+		for(var i=0; i < removeCartItemButtons.length; i++) {
+			var button = removeCartItemButtons[i]
+			button.addEventListener('click', remoneCartItem)
+		}
+
+		var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+		for(var i=0; i < quantityInputs.length; i++) {
+			var input = quantityInputs[i]
+			input.addEventListener('change', quantityChanged)
+		}
+
+		var addToCartButtons = document.getElementsByClassName('shop-item-button')
+		for(var i=0; i < addToCartButtons.length; i++) {
+			var button = addToCartButtons[i]
+			button.addEventListener('click', addToCartClicked)
+		}
+
+		document.getElementsByClassName('btn-purchase')[0].addEventListener('click',purchaseClicked)
+	}
+
+	function purchaseClicked() {
+		alert('Cảm ơn quý khách đã mua hàng')
+		var cartItems = document.getElementsByClassName('cart-items')[0]
+		while(cartItems.hasChildNodes())
+			cartItems.removeChild(cartItems.firstChild)
+		updateCartTotal()
+	}
+
+	function removeCartItem(event) {
+		var buttonClicked = event.target
+		buttonClicked.parentElement.parentElement.remove()
+		updateCartTotal()
+	}
+
+	function quantityChanged(event) {
+		var input = event.target
+		if(isNaN(input.value) || input.value <= 0)
+			input.value = 1
+		updateCartTotal()
+	}
+
+	function addToCartClicked(event) {
+		var button = event.target
+		var shopItem = button.parentElement.parentElement
+		var title = shopItem.getElementsByClassName('p-name')[0].innerText
+		var price = shopItem.getElementsByClassName('gia')[0].innerText
+		var imageSrc = shopItem.getElementsByClassName('p-img')[0].src
+		addItemToCart(title,price,imageSrc)
+		updateCartTotal()
+	}
+
+	function addItemToCart(title, price, imageSrc) {
+		var cartRow = document.createElement('div')
+		cartRow.classList.add('cart-row')
+		var cartItems = document.getElementsByClassName('cart-items')[0]
+		var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+		for(var i=0; i < cartItemNames.length; i++) 
+			if(cartItemNames[i].innerText == title) {
+				alert('Món hàng này đã được đưa vào giỏ!!!!')
+				return
+			}
+		var cartRowContens = 
+			`<div class="cart-item cart-column">
+				<img class="cart-item-image" src="${imageSrc}" width="100" height="100">
+				<span class="cart-item-title">${title}</span>
+			</div>
+			<span class="cart-price cart-column">${price}</span>
+			<div class="cart-quantity cart-column">
+				<input class="cart-quantity-input" type="number" value="1" min="0">
+				<button class="btn btn-danger">XÓA</button>
+			</div>`
+		cartRow.innerHTML = cartRowContens
+		cartItems.append(cartRow)
+		cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click',removeCartItem)
+		cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('click',quantityChanged)
+	}
+
+	function updateCartTotal() {
+		var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+		var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+		var total = 0
+		for(var i=0; i < cartRows.length; i++) {
+			var cartRow = cartRows[i]
+			var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+			var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+			var price = parseFloat(priceElement.innerText.replace('đ',""))
+			var quantity = quantityElement.value
+			total = total + (price*quantity)
+		}
+		total = Math.round(total*100)/100
+		document.getElementsByClassName('cart-total-price')[0].innerText = total + '.000' + 'đ'
+	}
+
+</script>
+
+<body onLoad="Check_Tai_Khoan(); gio_hang()">
+	
+<script src="js/User.js"></script>
+<script src="js/SP.js"></script>
+
+<div class="Top_dau">
+    <div class="container">
+    	<span id="signup"><a href="DangKi.html"><button><i class="fa fa-user-plus"></i> Đăng ký</button></a></span>
+        <span id="login"><button onclick="document.getElementById('Phan_dang_nhap').style.display='block'"><i class="fa fa-sign-in-alt"></i> Đăng nhập</button></span>
+        <div id="Phan_dang_nhap" class="Khung_dang_nhap">
+            <form class="Noi_dung_khung Hoat_canh">
+                <div class="Cach_khung">
+                    <div style="padding-bottom:10px">
+                    	<input type="text" placeholder="Tên đăng nhập" id="Ten_dang_nhap" onBlur="KtTen()"/>
+                        <div id="Check_Name" style="text-align:left;font-weight:bold;color:red"></div>
+                    </div>
+                    <div>
+                    	<input type="password" placeholder="Mật khẩu" id="Mat_khau" onBlur="KtMK()"/>
+                        <div id="Check_Password" style="text-align:left;font-weight:bold;color:red"></div>
+                    </div>
+                    <span style="float:left;padding:10px">
+                        <label><input type="checkbox" id="Nho_mk" checked  />Nhớ mật khẩu</label>
+                    </span>
+                    <div class="Quen_mat_khau"><a href="#">Quên mật khẩu?</a></div>
+                    <button type="submit" onClick="SignIn()"><strong>Đăng nhập</strong></button>
+                </div>
+            </form>
+            
+            <script>
+				function KtTen() {
+					var ten = document.getElementById("Ten_dang_nhap").value;
+					if (ten=="")
+						document.getElementById("Check_Name").innerHTML="Tên đăng nhập đang trống";
+					else
+						document.getElementById("Check_Name").innerHTML="";
+				}
+				
+				function KtMK() {
+					var mk = document.getElementById("Mat_khau").value;
+					if (mk=="")
+						document.getElementById("Check_Password").innerHTML="Mật khẩu đang trống";	
+					else
+						document.getElementById("Check_Password").innerHTML="";	
+				}
+				
+                //Khi người dùng click bên ngoài khung đăng nhập thì khung đăng nhập sẽ tắt
+                window.onclick = function(event) {
+                	if(event.target == document.getElementById('Phan_dang_nhap')) {
+                    	document.getElementById('Phan_dang_nhap').style.display = "none";
+						document.getElementById('Ten_dang_nhap').value="";
+						document.getElementById('Mat_khau').value="";
+					}
+                }
+            </script>
+        </div>
+		<div id="Phan_thong_tin" class="Khung_thong_tin">
+			<div class="Noi_dung_khung Hoat_canh">
+				<caption><h1 style="color: darkblue">Thông tin người dùng</h1></caption>
+				<table class="Bang_thong_tin" cellspacing="20px">
+					<tr>
+						<td style="font-weight: bold">Họ và tên</td>
+						<td id="Ten-NguoiDung"></td>
+					</tr>
+					<tr>
+						<td style="font-weight: bold">Giới tính</td>
+						<td id="Sex-NguoiDung"></td>
+					</tr>
+					<tr>
+						<td style="font-weight: bold">Ngày sinh</td>
+						<td id="Birth-NguoiDung"></td>
+					</tr>
+					<tr>
+						<td style="font-weight: bold">Số điện thoại</td>
+						<td id="Phone-NguoiDung"></td>
+					</tr>
+				</table>
+			</div>
+			<script>
+				var tk = JSON.parse(localStorage.getItem('Tài khoản'));
+				document.getElementById('Ten-NguoiDung').innerHTML = '<td>'+tk.Ten_NguoiDung+'</td>';
+				document.getElementById('Sex-NguoiDung').innerHTML = '<td>'+tk.Gioi_Tinh+'</td>';
+				document.getElementById('Birth-NguoiDung').innerHTML = '<td>'+tk.Ngay_Sinh+'</td>';
+				document.getElementById('Phone-NguoiDung').innerHTML = '<td>'+tk.Sdt+'</td>';
+				window.onclick = function(event) {
+                	if(event.target == document.getElementById('Phan_thong_tin')) {
+                    	document.getElementById('Phan_thong_tin').style.display = "none";
+					}
+                }
+			</script>
+		</div>
+    </div>
+</div>
+<hr style="margin-top:0;border:1.5px solid #e6e6e6">
+
+<div class="header">
+    <div class="container">
+        <div class="header-logo">
+            <a class="logo" href="index.html">
+                <img src="images/logo/logo.png" height= "75px" width="237.67px">
+            </a>
+        </div>
+        <div class="Timkiem">
+            <form class="Phan_tim_kiem">
+                <input type="text" placeholder="Tìm kiếm" />
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="Giohang">
+            <button class="Phan_gio_hang" onClick="window.location='GioHang.html'"><img class="Hinh-gio-hang" src="images/icon/shopping-cart.png"></button>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<div class="Menu-list" style="position:static">
+    <div class="container">
+        <ul style="margin-top:0;margin-bottom:0">
+            <li class="Menu"><a href="index.html">Trang chủ</a></li>
+            <li class="Menu"><a href="gioithieu.html">Giới thiệu</a></li>
+            <li class="Menu">
+                <a href="cho.html?menu=0&page=1">Shop cho chó <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="cho.html?menu=1&page=1">Thức ăn</a>
+                    <a href="cho.html?menu=2&page=1">Vật dụng</a>
+                    <a href="cho.html?menu=3&page=1">Chuồng, giường</a>
+                </div>
+            </li>
+            <li class="Menu">
+                <a href="meo.html?menu=0&page=1">Shop cho mèo <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="meo.html?menu=1&page=1">Thức ăn</a>
+                    <a href="meo.html?menu=2&page=1">Vật dụng</a>
+                    <a href="meo.html?menu=3&page=1">Chuồng, giường</a>
+                </div>
+            </li>
+            <li class="Menu">
+                <a href="dongvatkhac.html">Shop vật nuôi khác <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <div class="Menu-sub">
+                        <a href="chim.html?menu=0&page=1">Chim <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-sub">
+                            <a href="chim.html?menu=1&page=1">Thức ăn</a>
+                            <a href="chim.html?menu=2&page=1">Vật dụng</a>
+                            <a href="chim.html?menu=3&page=1">Lồng và phụ kiện</a>
+                        </div>
+                    </div>
+                    <div class="Menu-sub">
+                        <a href="ca.html?menu=0&page=1">Cá <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-sub">
+                            <a href="ca.html?menu=1&page=1">Thức ăn</a>
+                            <a href="ca.html?menu=2&page=1">Vật dụng</a>
+                            <a href="ca.html?menu=3&page=1">Bể cá và phụ kiện</a>
+                        </div>
+                    </div>
+                    <div class="Menu-sub">
+                        <a href="hamster.html?menu=0&page=1">Hamster <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-sub">
+                            <a href="hamster.html?menu=1&page=1">Thức ăn</a>
+                            <a href="hamster.html?menu=2&page=1">Vật dụng</a>
+                            <a href="hamster.html?menu=3&page=1">Chuồng và phụ kiện</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="Menu"><a href="#">Khuyến mãi</a></li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</div>
+<div class="clear" style="padding-bottom: 30px"></div>
+	
+	<div class="section-container content-section">
+		<div class="section-header">
+			<span class="section-header-title">GIỎ HÀNG</span>
+			<button class="continue-button" onClick="window.location='index.html'">Tiếp tục mua hàng?</button>
+		</div>
+
+		<div style="clear:both"></div>
+
+		<div class="cart-row">
+			<span class="cart-item cart-header cart-column">SẢN PHẨM</span>
+			<span class="cart-price cart-column cart-header" style="color:deeppink">ĐƠN GIÁ</span>
+			<span class="cart-quantity cart-header cart-column">SỐ LƯỢNG</span>
+		</div>
+
+		<div class="cart-items">
+
+		</div>
+
+		<div class="cart-total">
+			<strong class="cart-total-title">Tổng: </strong>
+			<span class="cart-total-price">0 đ</span>
+		</div>
+
+		<button class="btn btn-primary btn-purchase">THANH TOÁN</button>
+	</div>
+	
+	
+</body>
+</html>

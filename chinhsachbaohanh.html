@@ -1,0 +1,326 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/logo/petshop.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="css/DangNhap_Ki.css" rel="stylesheet" type="text/css" />
+    <link href="css/Header.css" rel="stylesheet" type="text/css" />
+    <link href="css/Menu.css" rel="stylesheet" type="text/css" />
+    <link href="css/Main.css" rel="stylesheet" type="text/css" />
+    <link href="css/Footer.css" rel="stylesheet" type="text/css" />
+    <title>Chính sách bảo hành</title>
+<style>
+* {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;	
+}
+
+::-webkit-scrollbar {
+    width:5px;	
+}
+
+::-webkit-scrollbar-thumb {
+    background:lightpink;
+    border-radius:20px;	
+}
+    
+html {
+ 	scroll-behavior: smooth;
+}
+
+body {
+	margin:0;
+    padding: 0;
+}
+    
+     
+html, body { 
+    cursor:url('http://www.snazzyspace.com/cursorsfolder/dog-paw.png'), auto; 
+}
+    
+#Bam_len_top {
+	display:none;
+	position:fixed;
+	bottom:50px;
+	right:10px;
+	z-index:99;
+	font-size:20px;
+	border:none;
+	outline:none;
+	background-color:lightpink;
+	cursor:pointer;
+	padding:15px;
+	border-radius:20px;
+}
+
+#Trang_gio_hang {
+	display:none;
+	position:fixed;
+	right:8px;
+	bottom:110px;
+	z-index:99;
+	font-size:18px;
+	border:none;
+	background-color:lightpink;
+	cursor:pointer;
+	padding:15px;
+	border-radius:50%;
+}
+
+.clear{
+    clear: both;
+}
+</style>
+</head>
+
+<body onLoad="Check_Tai_Khoan()">
+<script src="js/Scroll_on_Top.js"></script>
+<script src="js/User.js"></script>
+
+<button onclick="Dua_len_dau()" id="Bam_len_top" title="Lên đầu trang"><i class="fa fa-arrow-up"></i></button>
+<button onClick="window.location='GioHang.html'" id="Trang_gio_hang"><i class="fa fa-shopping-cart"></i></button>
+
+<div class="Top_dau">
+    <div class="container">
+    	<span id="signup"><a href="DangKi.html"><button><i class="fa fa-user-plus"></i> Đăng ký</button></a></span>
+        <span id="login"><button onclick="document.getElementById('Phan_dang_nhap').style.display='block'"><i class="fa fa-sign-in-alt"></i> Đăng nhập</button></span>
+        <div id="Phan_dang_nhap" class="Khung_dang_nhap">
+            <form class="Noi_dung_khung Hoat_canh">
+                <div class="Cach_khung">
+                    <div style="padding-bottom:10px">
+                    	<input type="text" placeholder="Tên đăng nhập" id="Ten_dang_nhap" onBlur="KtTen()"/>
+                        <div id="Check_Name" style="text-align:left;font-weight:bold;color:red"></div>
+                    </div>
+                    <div>
+                    	<input type="password" placeholder="Mật khẩu" id="Mat_khau" onBlur="KtMK()"/>
+                        <div id="Check_Password" style="text-align:left;font-weight:bold;color:red"></div>
+                    </div>
+                    <span style="float:left;padding:10px">
+                        <label><input type="checkbox" id="Nho_mk" checked  />Nhớ mật khẩu</label>
+                    </span>
+                    <div class="Quen_mat_khau"><a href="#">Quên mật khẩu?</a></div>
+                    <button type="submit" onClick="SignIn()"><strong>Đăng nhập</strong></button>
+                </div>
+            </form>
+            
+            <script>
+				function KtTen() {
+					var ten = document.getElementById("Ten_dang_nhap").value;
+					if (ten=="")
+						document.getElementById("Check_Name").innerHTML="Tên đăng nhập đang trống";
+					else
+						document.getElementById("Check_Name").innerHTML="";
+				}
+				
+				function KtMK() {
+					var mk = document.getElementById("Mat_khau").value;
+					if (mk=="")
+						document.getElementById("Check_Password").innerHTML="Mật khẩu đang trống";	
+					else
+						document.getElementById("Check_Password").innerHTML="";	
+				}
+				
+                //Khi người dùng click bên ngoài khung đăng nhập thì khung đăng nhập sẽ tắt
+                window.onclick = function(event) {
+                	if(event.target == document.getElementById('Phan_dang_nhap')) {
+                    	document.getElementById('Phan_dang_nhap').style.display = "none";
+						document.getElementById('Ten_dang_nhap').value="";
+						document.getElementById('Mat_khau').value="";
+					}
+                }
+            </script>
+        </div>
+		<div id="Phan_thong_tin" class="Khung_thong_tin">
+			<div class="Noi_dung_khung Hoat_canh">
+				<caption><h1 style="color: darkblue">Thông tin người dùng</h1></caption>
+				<table class="Bang_thong_tin" cellspacing="20px">
+					<tr>
+						<td style="font-weight: bold">Họ và tên</td>
+						<td id="Ten-NguoiDung"></td>
+					</tr>
+					<tr>
+						<td style="font-weight: bold">Giới tính</td>
+						<td id="Sex-NguoiDung"></td>
+					</tr>
+					<tr>
+						<td style="font-weight: bold">Ngày sinh</td>
+						<td id="Birth-NguoiDung"></td>
+					</tr>
+					<tr>
+						<td style="font-weight: bold">Số điện thoại</td>
+						<td id="Phone-NguoiDung"></td>
+					</tr>
+				</table>
+			</div>
+			<script>
+				var tk = JSON.parse(localStorage.getItem('Tài khoản'));
+				document.getElementById('Ten-NguoiDung').innerHTML = '<td>'+tk.Ten_NguoiDung+'</td>';
+				document.getElementById('Sex-NguoiDung').innerHTML = '<td>'+tk.Gioi_Tinh+'</td>';
+				document.getElementById('Birth-NguoiDung').innerHTML = '<td>'+tk.Ngay_Sinh+'</td>';
+				document.getElementById('Phone-NguoiDung').innerHTML = '<td>'+tk.Sdt+'</td>';
+				window.onclick = function(event) {
+                	if(event.target == document.getElementById('Phan_thong_tin')) {
+                    	document.getElementById('Phan_thong_tin').style.display = "none";
+					}
+                }
+			</script>
+		</div>
+    </div>
+</div>
+<hr style="margin-top:0;border:1.5px solid #e6e6e6">
+
+<div class="header">
+    <div class="container">
+        <div class="header-logo">
+            <a class="logo" href="index.html">
+                <img src="images/logo/logo.png" height= "75px" width="237.67px">
+            </a>
+        </div>
+        <div class="Timkiem">
+            <form class="Phan_tim_kiem">
+                <input type="text" placeholder="Tìm kiếm" />
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="Giohang">
+            <button class="Phan_gio_hang" onClick="window.location='GioHang.html'"><img class="Hinh-gio-hang" src="images/icon/shopping-cart.png"></button>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<div class="Menu-list">
+    <div class="container">
+        <ul style="margin-top:0;margin-bottom:0">
+            <li class="Menu"><a href="index.html">Trang chủ</a></li>
+            <li class="Menu"><a href="gioithieu.html">Giới thiệu</a></li>
+            <li class="Menu">
+                <a href="cho.html?menu=0&page=1">Shop cho chó <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="cho.html?menu=1&page=1">Thức ăn</a>
+                    <a href="cho.html?menu=2&page=1">Vật dụng</a>
+                    <a href="cho.html?menu=3&page=1">Chuồng, giường</a>
+                </div>
+            </li>
+            <li class="Menu">
+                <a href="meo.html?menu=0&page=1">Shop cho mèo <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="meo.html?menu=1&page=1">Thức ăn</a>
+                    <a href="meo.html?menu=2&page=1">Vật dụng</a>
+                    <a href="meo.html?menu=3&page=1">Chuồng, giường</a>
+                </div>
+            </li>
+            <li class="Menu">
+                <a href="dongvatkhac.html">Shop vật nuôi khác <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <div class="Menu-sub">
+                        <a href="chim.html?menu=0&page=1">Chim <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-sub">
+                            <a href="chim.html?menu=1&page=1">Thức ăn</a>
+                            <a href="chim.html?menu=2&page=1">Vật dụng</a>
+                            <a href="chim.html?menu=3&page=1">Lồng và phụ kiện</a>
+                        </div>
+                    </div>
+                    <div class="Menu-sub">
+                        <a href="ca.html?menu=0&page=1">Cá <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-sub">
+                            <a href="ca.html?menu=1&page=1">Thức ăn</a>
+                            <a href="ca.html?menu=2&page=1">Vật dụng</a>
+                            <a href="ca.html?menu=3&page=1">Bể cá và phụ kiện</a>
+                        </div>
+                    </div>
+                    <div class="Menu-sub">
+                        <a href="hamster.html?menu=0&page=1">Hamster <i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-sub">
+                            <a href="hamster.html?menu=1&page=1">Thức ăn</a>
+                            <a href="hamster.html?menu=2&page=1">Vật dụng</a>
+                            <a href="hamster.html?menu=3&page=1">Chuồng và phụ kiện</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="Menu"><a href="giamgia.html">Khuyến mãi</a></li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+</div>
+<div class="clear"></div>
+    
+<div class="Main">
+    <div>
+        <p style="text-align: left;" align="center"><span style="color: #ff0000; font-size: 20px;"><strong>Chính sách Bảo hành Sản phẩm</strong></span></p>
+        <p>Bảo hành sản phẩm là khắc phục những lỗi hỏng hóc, sự cố kỹ thuật xảy ra do lỗi của nhà sản xuất.</p>
+        <p><strong>1. Điều kiện về bảo hành:</strong></p>
+        <p>Sản phẩm được bảo hành miễn phí nếu sản phẩm đó đáp ứng đủ các điều kiện sau:</p>
+        <p>a. Còn thời hạn bảo hành (được tính kể từ ngày khách hàng nhận được sản phẩm)</p>
+        <p>b. Khách hàng có đủ cả <strong>hóa đơn bán hàng của PetShop , phiếu bảo hành, tem bảo hành </strong>theo quy định của từng Nhà sản xuất.</p>
+        <p>&nbsp;</p>
+        <p><strong>2. Nơi nhận bảo hành: </strong></p>
+        <p>a. PetShop nhận sản phẩm cần bảo hành của khách: Khách hàng chuyển sản phẩm cần bảo hành đến bất kỳ cửa hàng thuộc hệ thống của Petcity. Chúng tôi sẽ có trách nhiệm gửi sản phẩm đến trung tâm bảo hành của nhà sản xuất. Sau khi sản phẩm được bảo hành, PetShop sẽ thông báo cho khách hàng đên nhận lại sản phẩm tại hệ thống cửa hàng của PetShop.</p>
+        <p>Các chi phí phát sinh trong quá trình thực hiện việc bảo hành như phí vận chuyển, thay thế linh kiện v.v… sẽ do khách hàng chi trả.</p>
+        <p>b. Khách hàng gửi trực tiếp sản phẩm cần bảo hành đến các trung tâm bảo hành của nhà sản xuất. Nhà sản xuất sẽ có trách nhiệm thực hiện việc bảo hành và thông báo kết quả cho khách hàng.</p>
+        <p>&nbsp;</p>
+        <p><strong>3. Những trường hợp không được bảo hành.</strong></p>
+        <p>a. Sản phẩm đã hết thời hạn bảo hành.</p>
+        <p>b. Phiếu bảo hành không được điền đầy đủ các thông tin khách hàng và các thông tin trên sản phẩm không trùng khớp với thông tin ghi trên phiếu bảo hành.</p>
+        <p>c. Hóa đơn bán hàng bị mất hoặc bị rách không đọc được thông tin về sản phẩm.</p>
+        <p>d. Phiếu bảo hành, Tem bảo hành bị rách hoặc mất; Tem bảo hành bị dán đè, hoặc Tem bảo hành bị sửa đổi nội dung (kể cả Tem bảo hành gốc).</p>
+        <p>e. Tự ý tháo dỡ, sửa chữa sản phẩm bởi các cá nhân khác không phải là nhân viên của Nhà sản xuất.</p>
+        <p>g. Sử dụng sai hướng dẫn hoặc quy định của nhà sản xuất: Sai điện áp, sản phẩm bị cháy nổ hay hỏng hóc do tác động cơ học; biến dạng do rơi, vỡ, va đập; bị xước, bị hỏng do ẩm ướt, hoen rỉ, chảy nước, động vật xâm nhập vào, thiên tai, hỏa hoạn.</p>
+        <p>h. Theo các quy định riêng của nhà sản xuất.&nbsp;</p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<hr style="border:1.5px solid #e6e6e6;margin-bottom:0">
+<div class="Footer">
+    <div class="container">
+        <div class="cot">
+            <p>Danh mục</p>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="#">Shop cho chó</a></li>
+                <li><a href="#">Shop cho mèo</a></li>
+                <li><a href="#">Shop vật nuôi khác</a></li>
+            </ul>
+        </div>
+        <div class="cot">
+            <p>Thông tin</p>
+            <ul>
+                <li><a href="gioithieu.html">Giới thiệu</a></li>
+                <li><a href="tuyendung.html">Tuyển dụng</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </div>
+        <div class="cot">
+            <p>Chính sách</p>
+            <ul>
+                <li><a href="chinhsachgiaohang.html">Chính sách giao hàng</a></li>
+                <li><a href="phuongthucthanhtoan.html">Phương thức thanh toán</a></li>
+                <li><a href="chinhsachbaohanh.html">Chính sách bảo hành</a></li>
+                <li><a href="chinhsachdoitra.html">Chính sách đổi, trả hàng</a></li>
+                <li><a href="dieukhoansudung.html">Điều khoản sử dụng</a></li>
+            </ul>
+        </div>
+        <div class="cot">
+            <p>Liên hệ</p>
+            <ul>
+                <li class="social-network">
+                    <a href="https://www.facebook.com/"></a>
+                    <a href="https://www.instagram.com/"></a>
+                    <a href="https://www.twitter.com/"></a>
+                    <a href="https://www.youtube.com/"></a>
+                </li>
+                <li style="padding-top:7px"><a href="callto:028xxxxxxxx">Sđt: 028xxxxxxxx</a></li>
+                <li><a href="mailto:petshop@gmail.com">Email: petshop@gmail.com</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+</body>
+</html>
