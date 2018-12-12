@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 	<link rel="icon" href="images/logo/petshop.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -413,8 +413,8 @@ body {
         </div>
         <div class="Timkiem">
             <form class="Phan_tim_kiem">
-                <input type="text" placeholder="Tìm kiếm" />
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <input id="searchcontent" type="text" placeholder="Tìm kiếm" />
+                <button onClick="return timkiem()"><i class="fa fa-search"></i></button>
             </form>
         </div>
         <div class="Giohang">
@@ -475,7 +475,7 @@ body {
                     </div>
                 </div>
             </li>
-            <li class="Menu"><a href="#">Khuyến mãi</a></li>
+            <li class="Menu"><a href="index.html#spgiamgia">Khuyến mãi</a></li>
             <div class="clear"></div>
         </ul>
     </div>
@@ -485,7 +485,7 @@ body {
 	<div class="section-container content-section">
 		<div class="section-header">
 			<span class="section-header-title">GIỎ HÀNG</span>
-			<button class="continue-button" onClick="window.location='index.html'">Tiếp tục mua hàng?</button>
+			<button class="continue-button" onClick="window.history.back()">Tiếp tục mua hàng?</button>
 		</div>
 
 		<div style="clear:both"></div>
