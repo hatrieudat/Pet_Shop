@@ -26,7 +26,7 @@ function validateLogin(){
     {
         if (user == admin[i].email && pass == admin[i].pass)
         {
-            window.location = 'sanpham.html';
+            window.location = 'thongke.html';
             return false;
         }
     }

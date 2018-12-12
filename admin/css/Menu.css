@@ -30,10 +30,14 @@
     border-left: groove #A70045;
 }
 
-.main{
-	margin-top: 50px;
+.admin-logo {
 	margin-left: 250px;
-	min-height: 100vh;
+	height: 113px;
+	text-align: right;
+}
+
+.main{
+	margin-left: 250px;
 	padding-bottom: 30px;
 }
 

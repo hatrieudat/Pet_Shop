@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="css/Menu.css" rel="stylesheet" type="text/css" />
     <link href="css/users.css" rel="stylesheet" type="text/css" />
-	<script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
-    <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <title>Admin area</title>
 <style>
     * {
@@ -47,57 +46,8 @@ h2 {
   font-weight: normal;
   color: #333;
 }
-
-.container {
-  width: 500px;
-  margin: 20px;
-  background: #fff;
-  padding: 20px;
-  overflow: hidden;
-  float: left;
-}	
-	
-.vertical .progress-bar {
-  float: left;
-  height: 300px;
-  width: 40px;
-  margin-right: 25px;
-}
-
-.vertical .progress-track {
-  position: relative;
-  width: 40px;
-  height: 100%;
-  background: #ebebeb;
-}
-
-.vertical .progress-fill {
-  position: relative;
-  background: #825;
-  height: 50%;
-  width: 40px;
-  color: #fff;
-  text-align: center;
-  font-family: "Lato","Verdana",sans-serif;
-  font-size: 12px;
-  line-height: 20px;
-}
-
-.rounded .progress-track,
-.rounded .progress-fill {
-  box-shadow: inset 0 0 5px rgba(0,0,0,.2);
-  border-radius: 3px;
-}	
-	
 </style>
 <script>
-    function openMenu() {
-      document.getElementById("MENU").style.width = "100%";
-    }
-
-    function closeMenu() {
-      document.getElementById("MENU").style.width = "0%";
-    }
     function signout() {
         window.location = 'index.html';
     }
@@ -105,9 +55,9 @@ h2 {
 </head>
 
 <body>
+	
 <div id="MENU" class="menu" >
     <img src="images/logo.png">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
     <div class="menu-content">
 		<a href="thongke.html" class="current"><i class="fa fa-chart-bar" style="padding-left: 3px"> Thống kê</i></a>
         <a href="sanpham.html"><i class="fas fa-box-open"></i> Quản lý sản phẩm</a>
@@ -116,7 +66,42 @@ h2 {
         <a href="#" onClick="signout()"><i class="fas fa-power-off"></i> Đăng xuất</a>
     </div>
 </div>
+
+<div class="admin-logo"><img src="images/rsz_admin-header.png"></div>
+
+<div class="main">
+	<div id="piechart"></div>	
+</div>
+
+<script type="text/javascript">
+	// Load google charts
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
+
+	// Draw the chart and set the chart values
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+  			['Task', 'Hours per Day'],
+  			['Work', 8],
+			['Friends', 2],
+			['Eat', 2],
+			['TV', 2],
+  			['Gym', 2],
+			['Sleep', 8]
+		]);
+
+  		// Optional; add a title and set the width and height of the chart
+  		var options = {
+	  	'title':'My Average Day',
+	  	'width':500, 
+	  	'height':450
+  		};
+
+  		// Display the chart inside the <div> element with id="piechart"
+  		var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  		chart.draw(data, options);
+	}
+</script>
 	
-<div class="nav"><span class="open" onclick="openMenu()"><i class="fas fa-list"></i></span></div>
 </body>
 </html>

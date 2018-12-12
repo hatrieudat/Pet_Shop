@@ -7,10 +7,6 @@ function User(user_name, ten, sdt, gioi_tinh, ngaysinh) {
     this.ngaysinh = ngaysinh;
 }
 
-function popup_themsp() {
-    document.getElementsByClassName('popup-themsp')[0].style.display = 'block';
-}
-
 user = new Array();
 
 user[0] = new User("teoem123","Nguyễn Văn Tèo", "0778093114","Nam", "09/01/1999");
@@ -43,36 +39,6 @@ function load_quan_ly_user() {
     }
 }
 
-function xoa_sp_i(e, i) {
-    e.addEventListener('click', function(e) {
-        if (confirm('Xác nhận xoá')) {
-            document.querySelectorAll('tbody tr')[i].style.display = 'none';
-        }
-    });
-}
-
-function them_mot_user() {
-    var input = document.querySelectorAll('.popup-themsp__content .them-user');
-    var tr = document.querySelectorAll('tbody tr');
-    document.getElementById('table-user').innerHTML += '\
-                <tr class="sua_thanh_cong">\
-                    <td>' + (tr.length + 1) + '</td>\
-                    <td>' + input[0].value + '</td>\
-                    <td>' + input[1].value + '</td>\
-                    <td>' + input[2].value + '</td>\
-                    <td>' + input[3].value + '</td>\
-                    <td>' + input[4].value + '</td>\
-                    <td>' + input[5].value + '</td>\
-                    <td>\
-                        <button class="xoa_sp">Xóa</button><br>\
-                        <button class="sua_sp">Sửa</button>\
-                    </td>\
-                </tr>';
-
-    document.getElementsByClassName('back')[0].click();
-    document.documentElement.scrollTop = '10000';
-}
-
 function xoa_user() {
     var xoa_sp = document.getElementsByClassName('xoa_sp');
     var sua_sp = document.getElementsByClassName('sua_sp');
@@ -85,14 +51,15 @@ function xoa_user() {
 function them_thong_tin_sua_user(e, i) {
     var sua_user = document.getElementsByClassName('sua-user');
     var thong_tin = document.querySelectorAll('tbody tr td');
-    e.addEventListener('click', function() {
-        document.getElementsByClassName('popup-themsp')[1].style.display = 'block';
-        sua_user[0].value = thong_tin[i * 8 + 0].innerHTML;
-        sua_user[1].value = thong_tin[i * 8 + 1].innerHTML;
-        sua_user[2].value = thong_tin[i * 8 + 2].innerHTML;
-        sua_user[3].value = thong_tin[i * 8 + 3].innerHTML;
-        sua_user[4].value = thong_tin[i * 8 + 4].innerHTML;
-        sua_user[5].value = thong_tin[i * 8 + 5].innerHTML;
+	var popup_themsp = document.getElementsByClassName('popup-themsp');
+    e.addEventListener('click', function(e) {
+        popup_themsp[0].style.display = 'block';
+        sua_user[0].value = thong_tin[i * 7 + 0].innerHTML;
+        sua_user[1].value = thong_tin[i * 7 + 1].innerHTML;
+        sua_user[2].value = thong_tin[i * 7 + 2].innerHTML;
+        sua_user[3].value = thong_tin[i * 7 + 3].innerHTML;
+        sua_user[4].value = thong_tin[i * 7 + 4].innerHTML;
+        sua_user[5].value = thong_tin[i * 7 + 5].innerHTML;
     });
 }
 
@@ -101,21 +68,22 @@ function sua_thong_tin_user() {
     var hang = document.querySelectorAll('tbody tr');
     var input = document.querySelectorAll('.popup-themsp__content .sua-user');
     var i = input[0].value - 1;
-    thong_tin[(i) * 8 + 1].innerHTML = input[1].value;
-    thong_tin[(i) * 8 + 2].innerHTML = input[2].value;
-    thong_tin[(i) * 8 + 3].innerHTML = input[3].value;
-    thong_tin[(i) * 8 + 4].innerHTML = input[4].value;
-    thong_tin[(i) * 8 + 5].innerHTML = input[5].value;
-    thong_tin[(i) * 8 + 6].innerHTML = input[6].value;
+    thong_tin[(i) * 7 + 1].innerHTML = input[1].value;
+    thong_tin[(i) * 7 + 2].innerHTML = input[2].value;
+    thong_tin[(i) * 7 + 3].innerHTML = input[3].value;
+    thong_tin[(i) * 7 + 4].innerHTML = input[4].value;
+    thong_tin[(i) * 7 + 5].innerHTML = input[5].value;
     document.getElementsByClassName('back')[0].click();
-    hang[i].className = "sua_thanh_cong";
-    setTimeout(() => hang[i].className = "", 2000);
 }
-// Xoá sp thứ i
+
 function xoa_user_i(e, i) {
     e.addEventListener('click', function(e) {
         if (confirm('Xác nhận xoá')) {
-            document.querySelectorAll('tbody tr')[i].style.display = 'none';
+			document.querySelectorAll('tbody')[i+1].style.display = "none";
         }
     });
+}
+
+function close_popup_themsp() {
+    document.getElementsByClassName('popup-themsp')[0].style.display = 'none';
 }

@@ -38,13 +38,6 @@ html, body {
 }
 </style>
 <script>
-    function openMenu() {
-      document.getElementById("MENU").style.width = "100%";
-    }
-
-    function closeMenu() {
-      document.getElementById("MENU").style.width = "0%";
-    }
     function signout() {
         window.location = 'index.html';
     }
@@ -54,7 +47,6 @@ html, body {
 <body>
 <div id="MENU" class="menu">
     <img src="images/logo.png">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
     <div class="menu-content">
 		<a href="thongke.html"><i class="fa fa-chart-bar" style="padding-left: 3px"> Thống kê</i></a>
         <a href="sanpham.html"><i class="fas fa-box-open"></i> Quản lý sản phẩm</a>
@@ -63,7 +55,9 @@ html, body {
         <a href="#" onClick="signout()"><i class="fas fa-power-off"></i> Đăng xuất</a>
     </div>
 </div>
-<div class="nav"><span class="open" onclick="openMenu()"><i class="fas fa-list"></i></span></div>
+	
+<div class="admin-logo"><img src="images/rsz_admin-header.png"></div>
+	
 <table>
     <tr>
         <th></th>
