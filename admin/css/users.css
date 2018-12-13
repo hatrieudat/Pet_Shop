@@ -33,7 +33,7 @@ table tbody td {
 	border-bottom: 1px solid black;
 }
 
-.xoa_sp,.sua_sp{
+.xoa_user,.sua_user{
 	height: 33px;
 	width: 65px;
 	background-color: #F0F0F0;
@@ -44,14 +44,14 @@ table tbody td {
 	outline: none;
 }
 
-.xoa_sp:hover,.sua_sp:hover{
+.xoa_user:hover,.sua_user:hover{
 	background: #2F353A ;
 	border: 1px solid #2F353A;
 	color: white;
 	cursor: pointer;
 }
 
-.popup-themsp{
+.popup-themuser{
 	display: none;
 	background: rgba(0,0,0,0.5);
 	position: fixed;
@@ -62,7 +62,7 @@ table tbody td {
 	z-index: 5;
 }
 
-.popup-themsp__content{
+.popup-themuser__content{
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -73,34 +73,34 @@ table tbody td {
 	border-radius: 15px;
 }
 
-.popup-themsp__title{
+.popup-themuser__title{
 	text-align: center;
 	font-size: 20px;
 	padding: 30px;
 	background-color: #B2FD24;
 }
 
-.popup-themsp__title:hover {
+.popup-themuser__title:hover {
 	background-color: #DCFF4D;
 }
 
-.popup-themsp-left{
+.popup-themuser-left{
 	float: left;
 	width: 45%;
 	text-align: right;
 }
 
-.popup-themsp-right{
+.popup-themuser-right{
 	float: right;
 	width: 50%;
 }
 
-.popup-themsp-left__label,.popup-themsp-left__input{
+.popup-themuser-left__label,.popup-themuser-left__input{
 	margin-top: 20px;
 	height: 35px;
 }
 
-.popup-themsp-left__input input{
+.popup-themuser-left__input input{
 	border:0;
 	margin-top: 0;
 	border-bottom: 2px solid #CBCBCB;
@@ -114,7 +114,7 @@ input[type=checkbox]{
 	margin-left: 10px;
 }
 
-.popup-themsp__btn{
+.popup-themuser__btn{
 	position: relative;
 	background: #2FB016;
 	border: 1px solid #CBCBCB;
@@ -128,7 +128,7 @@ input[type=checkbox]{
 	left: 140px;
 }
 
-.popup-themsp__btn:hover{
+.popup-themuser__btn:hover{
 	background: #3B872C;
 	cursor: pointer;
 }

@@ -32,28 +32,28 @@ function load_quan_ly_user() {
 						<td>' + user[i].ngaysinh + '</td>\
                         <td>' + user[i].sdt + '</td>\
                         <td>\
-                            <button class="xoa_sp">Xóa</button><br>\
-                            <button class="sua_sp">Sửa</button>\
+                            <button class="xoa_user">Xóa</button><br>\
+                            <button class="sua_user">Sửa</button>\
                         </td>\
                     </tr>';
     }
 }
 
 function xoa_user() {
-    var xoa_sp = document.getElementsByClassName('xoa_sp');
-    var sua_sp = document.getElementsByClassName('sua_sp');
-    for (var i = 0; i < xoa_sp.length; i++) {
-        xoa_user_i(xoa_sp[i], i);
-        them_thong_tin_sua_user(sua_sp[i], i);
+    var xoa = document.getElementsByClassName('xoa_user');
+    var sua = document.getElementsByClassName('sua_user');
+    for (var i = 0; i < xoa.length; i++) {
+        xoa_user_i(xoa[i], i);
+        them_thong_tin_sua_user(sua[i], i);
     }
 };
 
 function them_thong_tin_sua_user(e, i) {
     var sua_user = document.getElementsByClassName('sua-user');
     var thong_tin = document.querySelectorAll('tbody tr td');
-	var popup_themsp = document.getElementsByClassName('popup-themsp');
+	var popup_themuser = document.getElementsByClassName('popup-themuser');
     e.addEventListener('click', function(e) {
-        popup_themsp[0].style.display = 'block';
+        popup_themuser[0].style.display = 'block';
         sua_user[0].value = thong_tin[i * 7 + 0].innerHTML;
         sua_user[1].value = thong_tin[i * 7 + 1].innerHTML;
         sua_user[2].value = thong_tin[i * 7 + 2].innerHTML;
@@ -65,8 +65,7 @@ function them_thong_tin_sua_user(e, i) {
 
 function sua_thong_tin_user() {
     var thong_tin = document.querySelectorAll('tbody tr td');
-    var hang = document.querySelectorAll('tbody tr');
-    var input = document.querySelectorAll('.popup-themsp__content .sua-user');
+    var input = document.querySelectorAll('.popup-themuser__content .sua-user');
     var i = input[0].value - 1;
     thong_tin[(i) * 7 + 1].innerHTML = input[1].value;
     thong_tin[(i) * 7 + 2].innerHTML = input[2].value;
@@ -84,6 +83,6 @@ function xoa_user_i(e, i) {
     });
 }
 
-function close_popup_themsp() {
-    document.getElementsByClassName('popup-themsp')[0].style.display = 'none';
+function close_popup_themuser() {
+    document.getElementsByClassName('popup-themuser')[0].style.display = 'none';
 }
